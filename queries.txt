@@ -1,0 +1,1 @@
+insert into students values (next value for stud_id_seq, 'Arjay', 'Veliganio', 'M', '09154577845', 'Quezon City');
