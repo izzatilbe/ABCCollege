@@ -42,6 +42,13 @@ public class AbcGui extends javax.swing.JFrame {
         homePanel = new javax.swing.JPanel();
         logoHome = new javax.swing.JLabel();
         newPanel = new javax.swing.JPanel();
+        teacherDetailsFrame = new javax.swing.JInternalFrame();
+        teacherDetailsName = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        deptCB = new javax.swing.JComboBox<>();
+        desigCB = new javax.swing.JComboBox<>();
+        jLabel17 = new javax.swing.JLabel();
+        teacherDetailsBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -53,6 +60,7 @@ public class AbcGui extends javax.swing.JFrame {
         addressTF1 = new javax.swing.JTextField();
         newBtn = new javax.swing.JButton();
         genderCB1 = new javax.swing.JComboBox<>();
+        addHeaderLabel = new javax.swing.JLabel();
         updatePanel = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -69,11 +77,10 @@ public class AbcGui extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         deletePanel = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        delTable = new javax.swing.JTable();
-        jTextField2 = new javax.swing.JTextField();
+        delTF = new javax.swing.JTextField();
         delBtn = new javax.swing.JButton();
+        delLabel = new javax.swing.JLabel();
         loginPanel = new javax.swing.JPanel();
         userLabel = new javax.swing.JLabel();
         abcLogoLogin = new javax.swing.JLabel();
@@ -119,48 +126,80 @@ public class AbcGui extends javax.swing.JFrame {
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         homePanel.setBackground(new java.awt.Color(255, 255, 255));
+        homePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logoHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
         logoHome.setFocusable(false);
         logoHome.setRequestFocusEnabled(false);
         logoHome.setVerifyInputWhenFocusTarget(false);
-
-        javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
-        homePanel.setLayout(homePanelLayout);
-        homePanelLayout.setHorizontalGroup(
-            homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
-                .addGap(296, 296, 296)
-                .addComponent(logoHome)
-                .addGap(292, 292, 292))
-        );
-        homePanelLayout.setVerticalGroup(
-            homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(homePanelLayout.createSequentialGroup()
-                .addGap(146, 146, 146)
-                .addComponent(logoHome)
-                .addGap(167, 167, 167))
-        );
+        homePanel.add(logoHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, -1, -1));
 
         mainPanel.add(homePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         newPanel.setBackground(new java.awt.Color(255, 255, 255));
+        newPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        teacherDetailsFrame.setTitle("Teacher Details");
+        teacherDetailsFrame.setToolTipText("");
+        teacherDetailsFrame.setFrameIcon(null);
+        teacherDetailsFrame.setInheritsPopupMenu(true);
+        try {
+            teacherDetailsFrame.setSelected(true);
+        } catch (java.beans.PropertyVetoException e1) {
+            e1.printStackTrace();
+        }
+        teacherDetailsFrame.setVisible(false);
+        teacherDetailsFrame.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        teacherDetailsName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        teacherDetailsFrame.getContentPane().add(teacherDetailsName, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
+
+        jLabel16.setText("Department");
+        teacherDetailsFrame.getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
+
+        deptCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Business", "Computing" }));
+        teacherDetailsFrame.getContentPane().add(deptCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 170, -1));
+
+        desigCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lecturer", "Coordinator", "Head of Faculty" }));
+        teacherDetailsFrame.getContentPane().add(desigCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 170, -1));
+
+        jLabel17.setText("Designation");
+        teacherDetailsFrame.getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
+
+        teacherDetailsBtn.setText("Add Teacher");
+        teacherDetailsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teacherDetailsBtnActionPerformed(evt);
+            }
+        });
+        teacherDetailsFrame.getContentPane().add(teacherDetailsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, 30));
+
+        newPanel.add(teacherDetailsFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 300, 300));
 
         jLabel6.setText("First Name");
+        newPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 57, -1, -1));
 
         jLabel7.setText("Last Name");
+        newPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 129, -1, -1));
 
         jLabel8.setText("Gender");
+        newPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 194, -1, -1));
 
         jLabel9.setText("Phone Number");
+        newPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 194, -1, -1));
 
         jLabel10.setText("Address");
+        newPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 259, -1, -1));
+        newPanel.add(phoneTF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 214, 171, 34));
 
         fnameTF1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fnameTF1ActionPerformed(evt);
             }
         });
+        newPanel.add(fnameTF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 77, 279, 34));
+        newPanel.add(lnameTF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 149, 279, 34));
+        newPanel.add(addressTF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 279, 279, 66));
 
         newBtn.setText("Submit");
         newBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -168,6 +207,7 @@ public class AbcGui extends javax.swing.JFrame {
                 newBtnActionPerformed(evt);
             }
         });
+        newPanel.add(newBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 363, -1, 30));
 
         genderCB1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "M", "F" }));
         genderCB1.setOpaque(false);
@@ -176,61 +216,8 @@ public class AbcGui extends javax.swing.JFrame {
                 genderCB1ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout newPanelLayout = new javax.swing.GroupLayout(newPanel);
-        newPanel.setLayout(newPanelLayout);
-        newPanelLayout.setHorizontalGroup(
-            newPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(newPanelLayout.createSequentialGroup()
-                .addGap(255, 255, 255)
-                .addGroup(newPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(fnameTF1)
-                    .addComponent(lnameTF1)
-                    .addComponent(addressTF1)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addGroup(newPanelLayout.createSequentialGroup()
-                        .addGroup(newPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(phoneTF1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
-                        .addGap(18, 18, 18)
-                        .addGroup(newPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(genderCB1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(newBtn)
-                .addGap(116, 116, 116))
-        );
-        newPanelLayout.setVerticalGroup(
-            newPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(newPanelLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fnameTF1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lnameTF1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addGroup(newPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(newPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phoneTF1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(genderCB1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addressTF1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(newBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        newPanel.add(genderCB1, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 214, 90, 34));
+        newPanel.add(addHeaderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 100, 20));
 
         mainPanel.add(newPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
@@ -294,32 +281,28 @@ public class AbcGui extends javax.swing.JFrame {
         deletePanel.setBackground(new java.awt.Color(255, 255, 255));
         deletePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search2.png"))); // NOI18N
-        jLabel14.setFocusable(false);
-        jLabel14.setRequestFocusEnabled(false);
-        jLabel14.setVerifyInputWhenFocusTarget(false);
-        deletePanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 40, 40));
+        jLabel13.setText("Enter ID:");
+        deletePanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 60, 20));
 
-        jLabel13.setText("ID");
-        deletePanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 20, 20));
-
-        delTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        delTF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        delTF.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        delTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delTFActionPerformed(evt);
             }
-        ));
-        delTable.setFocusable(false);
-        deletePanel.add(delTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 520, -1));
-        deletePanel.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 250, 40));
+        });
+        deletePanel.add(delTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 250, 40));
 
         delBtn.setText("Delete");
-        deletePanel.add(delBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, -1, -1));
+        delBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delBtnActionPerformed(evt);
+            }
+        });
+        deletePanel.add(delBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 70, 30));
+
+        delLabel.setText("Delete");
+        deletePanel.add(delLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, -1, -1));
 
         mainPanel.add(deletePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
@@ -334,7 +317,7 @@ public class AbcGui extends javax.swing.JFrame {
         loginPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         userLabel.setText("Username");
-        loginPanel.add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, -1, 10));
+        loginPanel.add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, -1, 10));
 
         abcLogoLogin.setBackground(new java.awt.Color(255, 255, 255));
         abcLogoLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -348,15 +331,15 @@ public class AbcGui extends javax.swing.JFrame {
         loginPanel.add(abcLogoLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 240));
 
         pwLabel.setText("Password");
-        loginPanel.add(pwLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, -1, 10));
+        loginPanel.add(pwLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, -1, 10));
 
         userTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userTFActionPerformed(evt);
             }
         });
-        loginPanel.add(userTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 200, 30));
-        loginPanel.add(pwTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 200, 30));
+        loginPanel.add(userTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 200, 30));
+        loginPanel.add(pwTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, 200, 30));
 
         loginBtn.setText("Login");
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -364,7 +347,7 @@ public class AbcGui extends javax.swing.JFrame {
                 loginBtnActionPerformed(evt);
             }
         });
-        loginPanel.add(loginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, 90, 30));
+        loginPanel.add(loginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 420, 90, 30));
 
         getContentPane().add(loginPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -488,6 +471,7 @@ public class AbcGui extends javax.swing.JFrame {
 
     private void newStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newStudentActionPerformed
         setAllInvisible();
+        addHeaderLabel.setText("New Student");
         newPanel.setVisible(true);
         choice = STUDENT;
     }//GEN-LAST:event_newStudentActionPerformed
@@ -504,9 +488,8 @@ public class AbcGui extends javax.swing.JFrame {
 
     private void deleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteStudentActionPerformed
         setAllInvisible();
-        deletePanel.setVisible(true);
-        delTable.setVisible(false);
-        delBtn.setVisible(false);
+        delLabel.setText("Delete Student");
+        deletePanel.setVisible(true);   
         choice = STUDENT;
     }//GEN-LAST:event_deleteStudentActionPerformed
 
@@ -532,26 +515,42 @@ public class AbcGui extends javax.swing.JFrame {
 
     private void newTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newTeacherActionPerformed
         setAllInvisible();
+        addHeaderLabel.setText("New Teacher");
         newPanel.setVisible(true);
+        choice = TEACHER;
     }//GEN-LAST:event_newTeacherActionPerformed
 
     private void updateTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTeacherActionPerformed
         setAllInvisible();
         updatePanel.setVisible(true);
+        choice = TEACHER;
     }//GEN-LAST:event_updateTeacherActionPerformed
 
     private void deleteTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteTeacherActionPerformed
         setAllInvisible();
-        deletePanel.setVisible(true);
-        delTable.setVisible(false);
-        delBtn.setVisible(false);
+        delLabel.setText("Delete Teacher");
+        deletePanel.setVisible(true);        
+        choice = TEACHER;
     }//GEN-LAST:event_deleteTeacherActionPerformed
 
     private void newBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBtnActionPerformed
         if (choice == STUDENT) {
-            Student student = new Student(fnameTF1.getText(),lnameTF1.getText(),genderCB1.getSelectedItem().toString().charAt(0),phoneTF1.getText(),addressTF1.getText());
-        String message = "";
-        JOptionPane.showMessageDialog(this, message);
+            
+            Student student = new Student(fnameTF1.getText(),
+                    lnameTF1.getText(),
+                    genderCB1.getSelectedItem().toString(),
+                    phoneTF1.getText(),
+                    addressTF1.getText());
+            if(student.addStudent()) {
+                JOptionPane.showMessageDialog(this, "Added student: " + student.lastName.toUpperCase() + ", " + student.firstName);
+            }            
+            else {
+                JOptionPane.showMessageDialog(this, "Cannot add student.");
+            }
+        }
+        else {
+            teacherDetailsFrame.setVisible(true);
+            
         }
     }//GEN-LAST:event_newBtnActionPerformed
 
@@ -559,6 +558,79 @@ public class AbcGui extends javax.swing.JFrame {
         setAllInvisible();
         homePanel.setVisible(true);
     }//GEN-LAST:event_homeMenuMouseClicked
+
+    private void teacherDetailsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherDetailsBtnActionPerformed
+        Teacher teacher = new Teacher(fnameTF1.getText(),
+                lnameTF1.getText(),
+                genderCB1.getSelectedItem().toString(),
+                phoneTF1.getText(),addressTF1.getText(),
+                deptCB.getSelectedItem().toString(),
+                desigCB.getSelectedItem().toString());
+            
+            if(teacher.addTeacher()) {
+                JOptionPane.showMessageDialog(this, "Added teacher: " + teacher.lastName.toUpperCase() + ", " + teacher.firstName);
+            }            
+            else {
+                JOptionPane.showMessageDialog(this, "Cannot add teacher.");
+            }
+            teacherDetailsFrame.dispose();
+    }//GEN-LAST:event_teacherDetailsBtnActionPerformed
+
+    private void delTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_delTFActionPerformed
+
+    private void delBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnActionPerformed
+        int reply;
+        String delname = "";
+        
+        if (choice == STUDENT) {            
+            Student student = new Student();
+            if (student.searchStudent(Integer.valueOf(delTF.getText()))) {
+                delname = student.lastName.toUpperCase() + ", " + student.firstName; 
+                reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + delname + "?",
+                    "", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                    if(student.delStudent()){
+                        JOptionPane.showMessageDialog(this, "Deleted " + delname + " successfully.");
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(this, "Delete failed.");
+                    }
+                }
+                else {
+                   System.exit(0);
+                }
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "ID number does not exist.");
+            }           
+            
+        }
+        else {            
+            Teacher teacher = new Teacher();
+            if (teacher.searchTeacher(Integer.valueOf(delTF.getText()))) {
+                delname = teacher.lastName.toUpperCase() + ", " + teacher.firstName; 
+                reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + delname + "?",
+                    "", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                    if(teacher.delTeacher()){
+                        JOptionPane.showMessageDialog(this, "Deleted " + delname + " successfully.");
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(this, "Delete failed.");
+                    }
+                }
+                else {
+                   System.exit(0);
+                }
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "ID number does not exist.");
+            }  
+            
+        }
+    }//GEN-LAST:event_delBtnActionPerformed
     
     private void setAllInvisible() {
         homePanel.setVisible(false);
@@ -603,13 +675,17 @@ public class AbcGui extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel abcLogoLogin;
+    private javax.swing.JLabel addHeaderLabel;
     private javax.swing.JTextField addressTF;
     private javax.swing.JTextField addressTF1;
     private javax.swing.JButton delBtn;
-    private javax.swing.JTable delTable;
+    private javax.swing.JLabel delLabel;
+    private javax.swing.JTextField delTF;
     private javax.swing.JPanel deletePanel;
     private javax.swing.JMenuItem deleteStudent;
     private javax.swing.JMenuItem deleteTeacher;
+    private javax.swing.JComboBox<String> deptCB;
+    private javax.swing.JComboBox<String> desigCB;
     private javax.swing.JMenuItem enlistStudent;
     private javax.swing.JTextField fnameTF;
     private javax.swing.JTextField fnameTF1;
@@ -624,7 +700,8 @@ public class AbcGui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -634,7 +711,6 @@ public class AbcGui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField lnameTF;
     private javax.swing.JTextField lnameTF1;
     private javax.swing.JButton loginBtn;
@@ -654,6 +730,9 @@ public class AbcGui extends javax.swing.JFrame {
     private javax.swing.JMenuItem salaryTeacher;
     private javax.swing.JMenuItem showBalance;
     private javax.swing.JMenu studentMenu;
+    private javax.swing.JButton teacherDetailsBtn;
+    private javax.swing.JInternalFrame teacherDetailsFrame;
+    private javax.swing.JLabel teacherDetailsName;
     private javax.swing.JMenu teacherMenu;
     private javax.swing.JPanel updatePanel;
     private javax.swing.JMenuItem updateStudent;

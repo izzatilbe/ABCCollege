@@ -1,8 +1,22 @@
 public class Person {
-    private int id;
-    private String firstName;
-    private String lastName;
-    private char gender;
-    private String phoneNumber;
-    private String address;
+    public int id;
+    public String firstName;
+    public String lastName;
+    public String gender;
+    public String phoneNumber;
+    public String address;
+
+    public Person(String firstName, String lastName, String gender, String phoneNumber, String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+    
+    public Person(){
+        
+    }
+    
+    
 }
