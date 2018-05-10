@@ -925,7 +925,11 @@ public class AbcGui extends javax.swing.JFrame {
                     genderCB.getSelectedItem().toString(),
                     phoneTF.getText(),
                     addressTF.getText());
-            student.updateStudent();
+            if (student.updateStudent()) {
+                JOptionPane.showMessageDialog(this, "Update successful.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Update failed.");
+            }
         }
         else {
             Teacher teacher = new Teacher(Integer.valueOf(updateID.getText()),
@@ -934,7 +938,11 @@ public class AbcGui extends javax.swing.JFrame {
                     genderCB.getSelectedItem().toString(),
                     phoneTF.getText(),
                     addressTF.getText());
-            teacher.updateTeacher();
+            if (teacher.updateTeacher()) {
+                JOptionPane.showMessageDialog(this, "Update successful.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Update failed.");
+            }
         }
     }//GEN-LAST:event_updateBtnActionPerformed
 
