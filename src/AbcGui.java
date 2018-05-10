@@ -158,6 +158,11 @@ public class AbcGui extends javax.swing.JFrame {
         overtimePayLbl = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
+        balancePanel = new javax.swing.JPanel();
+        jLabel36 = new javax.swing.JLabel();
+        balanceID = new javax.swing.JTextField();
+        balanceBtn = new javax.swing.JButton();
+        delLabel2 = new javax.swing.JLabel();
         loginPanel = new javax.swing.JPanel();
         userLabel = new javax.swing.JLabel();
         abcLogoLogin = new javax.swing.JLabel();
@@ -765,6 +770,34 @@ public class AbcGui extends javax.swing.JFrame {
 
         mainPanel.add(salaryPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
+        balancePanel.setBackground(new java.awt.Color(255, 255, 255));
+        balancePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel36.setText("Enter ID:");
+        balancePanel.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 60, 20));
+
+        balanceID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        balanceID.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        balanceID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                balanceIDActionPerformed(evt);
+            }
+        });
+        balancePanel.add(balanceID, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 250, 40));
+
+        balanceBtn.setText("Show Balance");
+        balanceBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                balanceBtnActionPerformed(evt);
+            }
+        });
+        balancePanel.add(balanceBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, 120, 30));
+
+        delLabel2.setText("Show Balance");
+        balancePanel.add(delLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, -1, -1));
+
+        mainPanel.add(balancePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+
         getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         loginPanel.setFocusable(false);
@@ -957,7 +990,8 @@ public class AbcGui extends javax.swing.JFrame {
     }//GEN-LAST:event_updateStudentActionPerformed
 
     private void showBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showBalanceActionPerformed
-        // TODO add your handling code here:
+        setAllInvisible();
+        balancePanel.setVisible(true);
     }//GEN-LAST:event_showBalanceActionPerformed
 
     private void deleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteStudentActionPerformed
@@ -1410,6 +1444,25 @@ public class AbcGui extends javax.swing.JFrame {
         }
         teacherDetailsFrame1.dispose();
     }//GEN-LAST:event_teacherDetailsBtn1ActionPerformed
+
+    private void balanceIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_balanceIDActionPerformed
+
+    private void balanceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceBtnActionPerformed
+        Student student = new Student();
+        if(student.getBalance(Integer.valueOf(balanceID.getText()))) {
+            JOptionPane.showMessageDialog(this,
+                "Balance: " + student.balance,
+                student.lastName.toUpperCase() + ", " + student.firstName,
+                JOptionPane.PLAIN_MESSAGE);
+            balanceID.setText("");
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Student is not enrolled.");
+            balanceID.setText("");
+        }
+    }//GEN-LAST:event_balanceBtnActionPerformed
     
     private void updateTuition(){
         tuition = (Integer)repModuleSpinner.getValue() * 110 + (Integer)newModuleSpinner.getValue() * 525;
@@ -1471,6 +1524,7 @@ public class AbcGui extends javax.swing.JFrame {
         enlistPanel2.setVisible(false);
         salaryPanel.setVisible(false);
         salaryPanel2.setVisible(false);
+        balancePanel.setVisible(false);
     }
     
     private void enableFields(Boolean b){
@@ -1564,9 +1618,13 @@ public class AbcGui extends javax.swing.JFrame {
     private javax.swing.JTextField addressTF;
     private javax.swing.JTextField addressTF1;
     private javax.swing.JRadioButton allRB;
+    private javax.swing.JButton balanceBtn;
+    private javax.swing.JTextField balanceID;
+    private javax.swing.JPanel balancePanel;
     private javax.swing.JButton delBtn;
     private javax.swing.JLabel delLabel;
     private javax.swing.JLabel delLabel1;
+    private javax.swing.JLabel delLabel2;
     private javax.swing.JTextField delTF;
     private javax.swing.JPanel deletePanel;
     private javax.swing.JMenuItem deleteStudent;
@@ -1623,6 +1681,7 @@ public class AbcGui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

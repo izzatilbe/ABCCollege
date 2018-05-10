@@ -211,8 +211,8 @@ public class Student extends Person {
             return null;
         }
         
-    }
-     
+    } 
+        
     public boolean searchEnrolled(int id) {
         try {
             conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -228,6 +228,41 @@ public class Student extends Person {
                 balance = rs.getInt("balance");
                 deposit = rs.getInt("deposit");
                 tuition = rs.getInt("tuition");
+                
+            } else {
+                query.close();
+                return false;
+            }
+            query.close();
+            
+            return true;
+            
+        } catch (Exception ex) {
+            System.out.println("searchEnrolled exception: " + ex);
+            return false;
+        }
+        
+    }
+    
+    public boolean getBalance(int id) {
+        try {
+            conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            query = conn.createStatement();
+            sql = "SELECT "                    
+                    + "s.id, "
+                    + "s.firstname, "
+                    + "s.lastname, " 
+                    + "a.balance " 
+                    + "FROM students s INNER JOIN student_accounts a " 
+                    + "ON a.id = s.id WHERE a.id = " + id;           
+            rs = query.executeQuery(sql);
+            
+            if (rs.next()) {
+                
+                super.id = rs.getInt("id");
+                super.firstName = rs.getString("firstname");
+                super.lastName = rs.getString("lastname");             
+                balance = rs.getInt("balance");                
                 
             } else {
                 query.close();
