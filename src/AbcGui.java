@@ -1,5 +1,6 @@
 
 import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,6 +21,9 @@ public class AbcGui extends javax.swing.JFrame {
     int STUDENT = 1;
     int TEACHER = 2;
     int choice = 0;
+    int total = 0;
+    int tuition = 0;
+    
     
     public AbcGui() {
         initComponents();
@@ -38,6 +42,7 @@ public class AbcGui extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        studentViewBG = new javax.swing.ButtonGroup();
         mainPanel = new javax.swing.JPanel();
         homePanel = new javax.swing.JPanel();
         logoHome = new javax.swing.JLabel();
@@ -62,7 +67,7 @@ public class AbcGui extends javax.swing.JFrame {
         genderCB1 = new javax.swing.JComboBox<>();
         addHeaderLabel = new javax.swing.JLabel();
         updatePanel = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
+        updateSearch = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -72,15 +77,45 @@ public class AbcGui extends javax.swing.JFrame {
         fnameTF = new javax.swing.JTextField();
         lnameTF = new javax.swing.JTextField();
         addressTF = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        updateBtn = new javax.swing.JButton();
         genderCB = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        updateID = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        updateHeaderLabel = new javax.swing.JLabel();
+        updateCancelBtn = new javax.swing.JButton();
         deletePanel = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         delTF = new javax.swing.JTextField();
         delBtn = new javax.swing.JButton();
         delLabel = new javax.swing.JLabel();
+        viewStudentPanel = new javax.swing.JPanel();
+        viewStudentLabel = new javax.swing.JLabel();
+        withRB = new javax.swing.JRadioButton();
+        withoutRB = new javax.swing.JRadioButton();
+        allRB = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        studentTable = new javax.swing.JTable();
+        viewTeacherPanel = new javax.swing.JPanel();
+        viewTeacherLabel = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        teacherTable = new javax.swing.JTable();
+        enlistPanel = new javax.swing.JPanel();
+        enlistSearch = new javax.swing.JLabel();
+        enlistID = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        delLabel1 = new javax.swing.JLabel();
+        enlistPanel2 = new javax.swing.JPanel();
+        nameEnlistLabel = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        newModuleSpinner = new javax.swing.JSpinner();
+        repModuleSpinner = new javax.swing.JSpinner();
+        jLabel18 = new javax.swing.JLabel();
+        tuitionLbl = new javax.swing.JLabel();
+        enrollBtn = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel19 = new javax.swing.JLabel();
+        depositTF = new javax.swing.JTextField();
         loginPanel = new javax.swing.JPanel();
         userLabel = new javax.swing.JLabel();
         abcLogoLogin = new javax.swing.JLabel();
@@ -96,9 +131,7 @@ public class AbcGui extends javax.swing.JFrame {
         enlistStudent = new javax.swing.JMenuItem();
         deleteStudent = new javax.swing.JMenuItem();
         showBalance = new javax.swing.JMenuItem();
-        viewBal = new javax.swing.JMenu();
-        withbal = new javax.swing.JMenuItem();
-        nobal = new javax.swing.JMenuItem();
+        viewStudent = new javax.swing.JMenuItem();
         teacherMenu = new javax.swing.JMenu();
         newTeacher = new javax.swing.JMenuItem();
         updateTeacher = new javax.swing.JMenuItem();
@@ -224,26 +257,31 @@ public class AbcGui extends javax.swing.JFrame {
         updatePanel.setBackground(new java.awt.Color(255, 255, 255));
         updatePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search2.png"))); // NOI18N
-        updatePanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 40, 40));
+        updateSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search2.png"))); // NOI18N
+        updateSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateSearchMouseClicked(evt);
+            }
+        });
+        updatePanel.add(updateSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 40, 40));
 
         jLabel1.setText("First Name");
-        updatePanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, -1, -1));
+        updatePanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, -1, -1));
 
         jLabel2.setText("Last Name");
-        updatePanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, -1, -1));
+        updatePanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
 
         jLabel3.setText("Gender");
-        updatePanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, -1, -1));
+        updatePanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, -1, -1));
 
         jLabel4.setText("Phone Number");
-        updatePanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, -1));
+        updatePanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, -1, -1));
 
         jLabel5.setText("Address");
-        updatePanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
+        updatePanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, -1, -1));
 
         phoneTF.setEnabled(false);
-        updatePanel.add(phoneTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 171, 34));
+        updatePanel.add(phoneTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 171, 34));
 
         fnameTF.setEnabled(false);
         fnameTF.addActionListener(new java.awt.event.ActionListener() {
@@ -251,17 +289,22 @@ public class AbcGui extends javax.swing.JFrame {
                 fnameTFActionPerformed(evt);
             }
         });
-        updatePanel.add(fnameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 279, 34));
+        updatePanel.add(fnameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 279, 34));
 
         lnameTF.setEnabled(false);
-        updatePanel.add(lnameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 279, 34));
+        updatePanel.add(lnameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 279, 34));
 
         addressTF.setEnabled(false);
-        updatePanel.add(addressTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 279, 66));
+        updatePanel.add(addressTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 279, 66));
 
-        jButton1.setText("Update");
-        jButton1.setEnabled(false);
-        updatePanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, -1, 30));
+        updateBtn.setText("Update");
+        updateBtn.setEnabled(false);
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
+        updatePanel.add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, 120, 30));
 
         genderCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "M", "F" }));
         genderCB.setEnabled(false);
@@ -270,11 +313,23 @@ public class AbcGui extends javax.swing.JFrame {
                 genderCBActionPerformed(evt);
             }
         });
-        updatePanel.add(genderCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, 100, 34));
-        updatePanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 240, 40));
+        updatePanel.add(genderCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, 100, 34));
+        updatePanel.add(updateID, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 240, 40));
 
         jLabel11.setText("ID");
-        updatePanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 20, 20));
+        updatePanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 20, 20));
+
+        updateHeaderLabel.setText("Update");
+        updatePanel.add(updateHeaderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, -1, -1));
+
+        updateCancelBtn.setText("Cancel");
+        updateCancelBtn.setEnabled(false);
+        updateCancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateCancelBtnActionPerformed(evt);
+            }
+        });
+        updatePanel.add(updateCancelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 440, 120, 30));
 
         mainPanel.add(updatePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
@@ -305,6 +360,184 @@ public class AbcGui extends javax.swing.JFrame {
         deletePanel.add(delLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, -1, -1));
 
         mainPanel.add(deletePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+
+        viewStudentPanel.setBackground(new java.awt.Color(255, 255, 255));
+        viewStudentPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        viewStudentLabel.setText("View Student");
+        viewStudentPanel.add(viewStudentLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, -1, -1));
+
+        studentViewBG.add(withRB);
+        withRB.setText("With balance");
+        withRB.setContentAreaFilled(false);
+        withRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                withRBActionPerformed(evt);
+            }
+        });
+        viewStudentPanel.add(withRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, -1, -1));
+
+        studentViewBG.add(withoutRB);
+        withoutRB.setText("Without Balance");
+        withoutRB.setContentAreaFilled(false);
+        withoutRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                withoutRBActionPerformed(evt);
+            }
+        });
+        viewStudentPanel.add(withoutRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, -1, -1));
+
+        studentViewBG.add(allRB);
+        allRB.setSelected(true);
+        allRB.setText("View All");
+        allRB.setContentAreaFilled(false);
+        allRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allRBActionPerformed(evt);
+            }
+        });
+        viewStudentPanel.add(allRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, -1, -1));
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        studentTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        studentTable.setToolTipText("");
+        studentTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        studentTable.setAutoscrolls(false);
+        studentTable.setFillsViewportHeight(true);
+        studentTable.setFocusable(false);
+        studentTable.setGridColor(new java.awt.Color(102, 102, 102));
+        studentTable.setRowSelectionAllowed(false);
+        jScrollPane1.setViewportView(studentTable);
+
+        viewStudentPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 640, 320));
+
+        mainPanel.add(viewStudentPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+
+        viewTeacherPanel.setBackground(new java.awt.Color(255, 255, 255));
+        viewTeacherPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        viewTeacherLabel.setText("View Teacher");
+        viewTeacherPanel.add(viewTeacherLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
+
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+
+        teacherTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        teacherTable.setToolTipText("");
+        teacherTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        teacherTable.setAutoscrolls(false);
+        teacherTable.setFillsViewportHeight(true);
+        teacherTable.setFocusable(false);
+        teacherTable.setGridColor(new java.awt.Color(102, 102, 102));
+        teacherTable.setRowSelectionAllowed(false);
+        jScrollPane2.setViewportView(teacherTable);
+
+        viewTeacherPanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 640, 320));
+
+        mainPanel.add(viewTeacherPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+
+        enlistPanel.setBackground(new java.awt.Color(255, 255, 255));
+        enlistPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        enlistSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search2.png"))); // NOI18N
+        enlistSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                enlistSearchMouseClicked(evt);
+            }
+        });
+        enlistPanel.add(enlistSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 40, 40));
+
+        enlistID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        enlistID.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        enlistID.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                enlistIDMouseClicked(evt);
+            }
+        });
+        enlistID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enlistIDActionPerformed(evt);
+            }
+        });
+        enlistPanel.add(enlistID, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 200, 40));
+
+        jLabel14.setText("Enter ID:");
+        enlistPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 60, 20));
+
+        delLabel1.setText("Student Enrollment");
+        enlistPanel.add(delLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, -1, -1));
+
+        enlistPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        enlistPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        enlistPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        nameEnlistLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        enlistPanel2.add(nameEnlistLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jLabel12.setText("Repeat Modules");
+        enlistPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
+
+        jLabel15.setText("New Modules");
+        enlistPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
+
+        newModuleSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                newModuleSpinnerStateChanged(evt);
+            }
+        });
+        enlistPanel2.add(newModuleSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 70, 30));
+
+        repModuleSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                repModuleSpinnerStateChanged(evt);
+            }
+        });
+        enlistPanel2.add(repModuleSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 70, 30));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel18.setText("Tuition Fee");
+        enlistPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, -1, -1));
+
+        tuitionLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tuitionLbl.setForeground(new java.awt.Color(102, 0, 0));
+        enlistPanel2.add(tuitionLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, -1, -1));
+
+        enrollBtn.setText("Enroll");
+        enrollBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enrollBtnActionPerformed(evt);
+            }
+        });
+        enlistPanel2.add(enrollBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 80, 30));
+        enlistPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 152, 500, 20));
+
+        jLabel19.setText("Deposit Amount");
+        enlistPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
+
+        depositTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depositTFActionPerformed(evt);
+            }
+        });
+        enlistPanel2.add(depositTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 120, 30));
+
+        enlistPanel.add(enlistPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 500, 290));
+
+        mainPanel.add(enlistPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -386,6 +619,11 @@ public class AbcGui extends javax.swing.JFrame {
         studentMenu.add(updateStudent);
 
         enlistStudent.setText("Enlist");
+        enlistStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enlistStudentActionPerformed(evt);
+            }
+        });
         studentMenu.add(enlistStudent);
 
         deleteStudent.setText("Delete");
@@ -404,15 +642,13 @@ public class AbcGui extends javax.swing.JFrame {
         });
         studentMenu.add(showBalance);
 
-        viewBal.setText("View");
-
-        withbal.setText("With balance");
-        viewBal.add(withbal);
-
-        nobal.setText("Without balance");
-        viewBal.add(nobal);
-
-        studentMenu.add(viewBal);
+        viewStudent.setText("View");
+        viewStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewStudentActionPerformed(evt);
+            }
+        });
+        studentMenu.add(viewStudent);
 
         menuBar.add(studentMenu);
 
@@ -445,7 +681,12 @@ public class AbcGui extends javax.swing.JFrame {
         salaryTeacher.setText("Calculate salary");
         teacherMenu.add(salaryTeacher);
 
-        viewTeacher.setText("View all");
+        viewTeacher.setText("View");
+        viewTeacher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewTeacherActionPerformed(evt);
+            }
+        });
         teacherMenu.add(viewTeacher);
 
         menuBar.add(teacherMenu);
@@ -478,6 +719,7 @@ public class AbcGui extends javax.swing.JFrame {
 
     private void updateStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStudentActionPerformed
         setAllInvisible();
+        updateHeaderLabel.setText("Update Student");
         updatePanel.setVisible(true);
         choice = STUDENT;
     }//GEN-LAST:event_updateStudentActionPerformed
@@ -522,6 +764,7 @@ public class AbcGui extends javax.swing.JFrame {
 
     private void updateTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTeacherActionPerformed
         setAllInvisible();
+        updateHeaderLabel.setText("Update Teacher");
         updatePanel.setVisible(true);
         choice = TEACHER;
     }//GEN-LAST:event_updateTeacherActionPerformed
@@ -543,9 +786,11 @@ public class AbcGui extends javax.swing.JFrame {
                     addressTF1.getText());
             if(student.addStudent()) {
                 JOptionPane.showMessageDialog(this, "Added student: " + student.lastName.toUpperCase() + ", " + student.firstName);
+                initNewFields();
             }            
             else {
                 JOptionPane.showMessageDialog(this, "Cannot add student.");
+                initNewFields();
             }
         }
         else {
@@ -569,9 +814,11 @@ public class AbcGui extends javax.swing.JFrame {
             
             if(teacher.addTeacher()) {
                 JOptionPane.showMessageDialog(this, "Added teacher: " + teacher.lastName.toUpperCase() + ", " + teacher.firstName);
+                initNewFields();
             }            
             else {
                 JOptionPane.showMessageDialog(this, "Cannot add teacher.");
+                initNewFields();
             }
             teacherDetailsFrame.dispose();
     }//GEN-LAST:event_teacherDetailsBtnActionPerformed
@@ -604,6 +851,7 @@ public class AbcGui extends javax.swing.JFrame {
             }
             else {
                 JOptionPane.showMessageDialog(this, "ID number does not exist.");
+                delTF.setText("");
             }           
             
         }
@@ -627,17 +875,270 @@ public class AbcGui extends javax.swing.JFrame {
             }
             else {
                 JOptionPane.showMessageDialog(this, "ID number does not exist.");
+                delTF.setText("");
             }  
             
         }
     }//GEN-LAST:event_delBtnActionPerformed
+
+    private void updateSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateSearchMouseClicked
+        int genderIndex = 0;
+        if (choice == STUDENT) {
+            Student student = new Student();
+            if (student.searchStudent(Integer.valueOf(updateID.getText()))) {
+                if (student.gender == "M") genderIndex = 0; else genderIndex = 1;
+                enableFields(true);                
+                fnameTF.setText(student.firstName);
+                lnameTF.setText(student.lastName);
+                phoneTF.setText(student.phoneNumber);
+                genderCB.setSelectedIndex(genderIndex);
+                addressTF.setText(student.address);                
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "ID number does not exist.");
+                updateID.setText("");
+            } 
+        }
+        else {
+            Teacher teacher = new Teacher();
+            if (teacher.searchTeacher(Integer.valueOf(updateID.getText()))) {
+                if (teacher.gender == "M") genderIndex = 0; else genderIndex = 1;
+                enableFields(true);                
+                fnameTF.setText(teacher.firstName);
+                lnameTF.setText(teacher.lastName);
+                phoneTF.setText(teacher.phoneNumber);
+                genderCB.setSelectedIndex(genderIndex);
+                addressTF.setText(teacher.address);                
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "ID number does not exist.");
+                updateID.setText("");
+            }  
+        }
+    }//GEN-LAST:event_updateSearchMouseClicked
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        if (choice == STUDENT){
+            Student student = new Student(Integer.valueOf(updateID.getText()),
+                    fnameTF.getText(),
+                    lnameTF.getText(),
+                    genderCB.getSelectedItem().toString(),
+                    phoneTF.getText(),
+                    addressTF.getText());
+            student.updateStudent();
+        }
+        else {
+            Teacher teacher = new Teacher(Integer.valueOf(updateID.getText()),
+                    fnameTF.getText(),
+                    lnameTF.getText(),
+                    genderCB.getSelectedItem().toString(),
+                    phoneTF.getText(),
+                    addressTF.getText());
+            teacher.updateTeacher();
+        }
+    }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void updateCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCancelBtnActionPerformed
+        initUpdateFields();
+    }//GEN-LAST:event_updateCancelBtnActionPerformed
+
+    private void viewTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTeacherActionPerformed
+        setAllInvisible();
+        Teacher teacher = new Teacher();
+        teacherTable.setModel(DbUtils.resultSetToTableModel(teacher.getAllTeachers()));        
+        viewTeacherPanel.setVisible(true);
+    }//GEN-LAST:event_viewTeacherActionPerformed
+
+    private void viewStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStudentActionPerformed
+        setAllInvisible();
+        Student student = new Student();
+        studentTable.setModel(DbUtils.resultSetToTableModel(student.getAllStudents()));        
+        viewStudentPanel.setVisible(true);
+    }//GEN-LAST:event_viewStudentActionPerformed
+
+    private void enlistStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enlistStudentActionPerformed
+        setAllInvisible();
+        enlistPanel.setVisible(true);
+    }//GEN-LAST:event_enlistStudentActionPerformed
+
+    private void enlistIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enlistIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enlistIDActionPerformed
+
+    private void enlistSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enlistSearchMouseClicked
+        Student student = new Student();
+        boolean enrolled = student.searchEnrolled(Integer.valueOf(enlistID.getText()));
+        boolean exist = student.searchStudent(Integer.valueOf(enlistID.getText()));
+        if(exist && !enrolled){
+            nameEnlistLabel.setText(student.lastName.toUpperCase() + ", " + student.firstName);
+            enlistPanel2.setVisible(true);
+        } else if (exist && enrolled) {
+            JOptionPane.showMessageDialog(this, "Student already enrolled.");
+            enlistPanel2.setVisible(true);
+            nameEnlistLabel.setText(student.lastName.toUpperCase() + ", " + student.firstName);
+            repModuleSpinner.setValue(student.repModule);
+            repModuleSpinner.setEnabled(false);
+            newModuleSpinner.setValue(student.newModule);
+            newModuleSpinner.setEnabled(false);
+            tuitionLbl.setText(String.valueOf(student.tuition));
+            depositTF.setText(String.valueOf(student.deposit));
+            depositTF.setEnabled(false);
+            enrollBtn.setEnabled(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "Student id does not exist.");  
+        }        
+    }//GEN-LAST:event_enlistSearchMouseClicked
+
+    private void depositTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depositTFActionPerformed
+
+    private void enrollBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enrollBtnActionPerformed
+        int deposit = 0;
+        deposit = Integer.valueOf(depositTF.getText());
+        if (deposit < .2*tuition || deposit > tuition){
+            depositTF.setText("");
+            JOptionPane.showMessageDialog(this, "Invalid deposit amount."); 
+        }
+        else {
+            Student student = new Student();
+            if (student.enrollStudent(Integer.valueOf(enlistID.getText()),
+                    (Integer)repModuleSpinner.getValue(),
+                    (Integer)newModuleSpinner.getValue(),
+                    tuition - deposit,
+                    deposit,
+                    tuition)) {
+                JOptionPane.showMessageDialog(this, "Successfully enrolled.");
+                initEnlistFields();
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed to enroll."); 
+            }
+        }
+    }//GEN-LAST:event_enrollBtnActionPerformed
+
+    private void repModuleSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_repModuleSpinnerStateChanged
+        total = (Integer)repModuleSpinner.getValue() + (Integer)newModuleSpinner.getValue();
+        if (total > 6) {
+                JOptionPane.showMessageDialog(this, "Cannot exceed 6 modules.");
+                repModuleSpinner.setValue((Integer)repModuleSpinner.getPreviousValue());
+        }
+        else {
+            if ((Integer)repModuleSpinner.getValue() < 0) {
+            repModuleSpinner.setValue(0);            
+            } 
+            else if ((Integer)repModuleSpinner.getValue() > 2) {
+                newModuleSpinner.setEnabled(false);
+                newModuleSpinner.setValue(0);                
+                total = (Integer)repModuleSpinner.getValue();
+            }
+            else if ((Integer)repModuleSpinner.getValue() > 6) {
+                repModuleSpinner.setValue(6);
+                JOptionPane.showMessageDialog(this, "Cannot exceed 6 modules.");
+            } else {
+                newModuleSpinner.setEnabled(true);         
+            }
+        }
+        updateTuition();        
+    }//GEN-LAST:event_repModuleSpinnerStateChanged
+
+    private void newModuleSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_newModuleSpinnerStateChanged
+        total = (Integer)repModuleSpinner.getValue() + (Integer)newModuleSpinner.getValue();
+        if (total > 6) {
+                JOptionPane.showMessageDialog(this, "Cannot exceed 6 modules.");
+                newModuleSpinner.setValue((Integer)newModuleSpinner.getPreviousValue());
+        }
+        else {
+            if ((Integer)newModuleSpinner.getValue() < 0) {
+                newModuleSpinner.setValue(0);            
+            } 
+            
+            else if ((Integer)newModuleSpinner.getValue() > 6) {
+                newModuleSpinner.setValue(6);
+                JOptionPane.showMessageDialog(this, "Cannot exceed 6 modules.");
+            }
+        }
+        updateTuition();
+    }//GEN-LAST:event_newModuleSpinnerStateChanged
+
+    private void enlistIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enlistIDMouseClicked
+        initEnlistFields();
+    }//GEN-LAST:event_enlistIDMouseClicked
+
+    private void withRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_withRBActionPerformed
+        Student student = new Student();
+        studentTable.setModel(DbUtils.resultSetToTableModel(student.getWithBalance()));  
+    }//GEN-LAST:event_withRBActionPerformed
+
+    private void withoutRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_withoutRBActionPerformed
+        Student student = new Student();
+        studentTable.setModel(DbUtils.resultSetToTableModel(student.getWithoutBalance()));  
+    }//GEN-LAST:event_withoutRBActionPerformed
+
+    private void allRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allRBActionPerformed
+        Student student = new Student();
+        studentTable.setModel(DbUtils.resultSetToTableModel(student.getAllStudents()));  
+    }//GEN-LAST:event_allRBActionPerformed
+    
+    private void updateTuition(){
+        tuition = (Integer)repModuleSpinner.getValue() * 110 + (Integer)newModuleSpinner.getValue() * 525;
+        tuitionLbl.setText(String.valueOf(tuition));
+    }
     
     private void setAllInvisible() {
         homePanel.setVisible(false);
         updatePanel.setVisible(false);
         newPanel.setVisible(false);
         deletePanel.setVisible(false);
+        viewStudentPanel.setVisible(false);
+        viewTeacherPanel.setVisible(false);
+        enlistPanel.setVisible(false);
+        enlistPanel2.setVisible(false);
     }
+    
+    private void enableFields(Boolean b){
+        updateID.setEnabled(b);
+        fnameTF.setEnabled(b);
+        lnameTF.setEnabled(b);
+        phoneTF.setEnabled(b);
+        genderCB.setEnabled(b);
+        addressTF.setEnabled(b);
+        updateBtn.setEnabled(b);
+        updateCancelBtn.setEnabled(b);
+        updateID.setEnabled(!b);
+    }
+    
+    private void initNewFields(){
+        fnameTF1.setText("");
+        lnameTF1.setText("");
+        phoneTF1.setText("");
+        genderCB1.setSelectedIndex(0);
+        addressTF1.setText("");
+    }
+    
+    private void initUpdateFields(){
+        updateID.setText("");
+        fnameTF.setText("");
+        lnameTF.setText("");
+        phoneTF.setText("");
+        genderCB.setSelectedIndex(0);
+        addressTF.setText("");
+    }
+    
+    private void initEnlistFields(){
+        repModuleSpinner.setValue(0);
+        repModuleSpinner.setEnabled(true);
+        newModuleSpinner.setValue(0);
+        newModuleSpinner.setEnabled(true);
+        tuitionLbl.setText("");
+        depositTF.setText("");
+        depositTF.setEnabled(true);
+        enrollBtn.setEnabled(true);
+        nameEnlistLabel.setText("");
+        enlistPanel2.setVisible(false);
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -678,15 +1179,23 @@ public class AbcGui extends javax.swing.JFrame {
     private javax.swing.JLabel addHeaderLabel;
     private javax.swing.JTextField addressTF;
     private javax.swing.JTextField addressTF1;
+    private javax.swing.JRadioButton allRB;
     private javax.swing.JButton delBtn;
     private javax.swing.JLabel delLabel;
+    private javax.swing.JLabel delLabel1;
     private javax.swing.JTextField delTF;
     private javax.swing.JPanel deletePanel;
     private javax.swing.JMenuItem deleteStudent;
     private javax.swing.JMenuItem deleteTeacher;
+    private javax.swing.JTextField depositTF;
     private javax.swing.JComboBox<String> deptCB;
     private javax.swing.JComboBox<String> desigCB;
+    private javax.swing.JTextField enlistID;
+    private javax.swing.JPanel enlistPanel;
+    private javax.swing.JPanel enlistPanel2;
+    private javax.swing.JLabel enlistSearch;
     private javax.swing.JMenuItem enlistStudent;
+    private javax.swing.JButton enrollBtn;
     private javax.swing.JTextField fnameTF;
     private javax.swing.JTextField fnameTF1;
     private javax.swing.JComboBox<String> genderCB;
@@ -694,14 +1203,17 @@ public class AbcGui extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenu homeMenu;
     private javax.swing.JPanel homePanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -710,7 +1222,9 @@ public class AbcGui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField lnameTF;
     private javax.swing.JTextField lnameTF1;
     private javax.swing.JButton loginBtn;
@@ -718,29 +1232,45 @@ public class AbcGui extends javax.swing.JFrame {
     private javax.swing.JLabel logoHome;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JLabel nameEnlistLabel;
     private javax.swing.JButton newBtn;
+    private javax.swing.JSpinner newModuleSpinner;
     private javax.swing.JPanel newPanel;
     private javax.swing.JMenuItem newStudent;
     private javax.swing.JMenuItem newTeacher;
-    private javax.swing.JMenuItem nobal;
     private javax.swing.JTextField phoneTF;
     private javax.swing.JTextField phoneTF1;
     private javax.swing.JLabel pwLabel;
     private javax.swing.JPasswordField pwTF;
+    private javax.swing.JSpinner repModuleSpinner;
     private javax.swing.JMenuItem salaryTeacher;
     private javax.swing.JMenuItem showBalance;
     private javax.swing.JMenu studentMenu;
+    private javax.swing.JTable studentTable;
+    private javax.swing.ButtonGroup studentViewBG;
     private javax.swing.JButton teacherDetailsBtn;
     private javax.swing.JInternalFrame teacherDetailsFrame;
     private javax.swing.JLabel teacherDetailsName;
     private javax.swing.JMenu teacherMenu;
+    private javax.swing.JTable teacherTable;
+    private javax.swing.JLabel tuitionLbl;
+    private javax.swing.JButton updateBtn;
+    private javax.swing.JButton updateCancelBtn;
+    private javax.swing.JLabel updateHeaderLabel;
+    private javax.swing.JTextField updateID;
     private javax.swing.JPanel updatePanel;
+    private javax.swing.JLabel updateSearch;
     private javax.swing.JMenuItem updateStudent;
     private javax.swing.JMenuItem updateTeacher;
     private javax.swing.JLabel userLabel;
     private javax.swing.JTextField userTF;
-    private javax.swing.JMenu viewBal;
+    private javax.swing.JMenuItem viewStudent;
+    private javax.swing.JLabel viewStudentLabel;
+    private javax.swing.JPanel viewStudentPanel;
     private javax.swing.JMenuItem viewTeacher;
-    private javax.swing.JMenuItem withbal;
+    private javax.swing.JLabel viewTeacherLabel;
+    private javax.swing.JPanel viewTeacherPanel;
+    private javax.swing.JRadioButton withRB;
+    private javax.swing.JRadioButton withoutRB;
     // End of variables declaration//GEN-END:variables
 }

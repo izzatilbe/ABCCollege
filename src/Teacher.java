@@ -3,12 +3,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 
 public class Teacher extends Person {
-    private String department;
-    private String designation;
+    public String department;
+    public String designation;
     
     public final static String DRIVER="org.apache.derby.jdbc.ClientDriver";
     public final static String URL="jdbc:derby://localhost:1527/ABCCollege";
@@ -37,6 +38,10 @@ public class Teacher extends Person {
                 break;
         }
                     
+    }
+    
+    public Teacher(int id, String firstName, String lastName, String gender, String phoneNumber, String address) {
+        super(id, firstName, lastName, gender, phoneNumber, address);
     }
     
     public Teacher(){
@@ -101,18 +106,73 @@ public class Teacher extends Person {
             query = conn.createStatement();
             sql = "select * from teachers where id = " + id;            
             rs = query.executeQuery(sql);
-            while (rs.next()) {
+            
+            if (rs.next()) {
+                
                 super.id = rs.getInt("id");
                 super.firstName = rs.getString("firstname");
                 super.lastName = rs.getString("lastname");            
+                super.gender = rs.getString("gender");
+                super.phoneNumber = rs.getString("phonenumber"); 
+                super.address = rs.getString("address");
                 
+            } else {
+                query.close();
+                return false;
             }
-        query.close();
-        return true;
+            query.close();
+            
+            return true;
             
         } catch (Exception ex) {
             System.out.println("searchTeacher exception: " + ex);
             return false;
+        }
+        
+    }
+    
+    public boolean updateTeacher(){
+        try {
+            Class.forName(DRIVER);
+            conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+                                   
+            sql = "UPDATE teachers SET "                    
+                    + "firstname = ?,"
+                    + "lastname = ?,"
+                    + "gender = ?,"
+                    + "phonenumber = ?,"
+                    + "address = ?"                    
+                    + "WHERE id = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, super.firstName);
+            ps.setString(2, super.lastName);
+            ps.setString(3, super.gender);
+            ps.setString(4, super.phoneNumber);
+            ps.setString(5, super.address);
+            ps.setInt(6, super.id);
+
+            // execute update SQL stetement
+            ps.executeUpdate();
+            ps.clearParameters();
+            return true;
+        } catch (Exception ex) {
+            System.out.println("Update Teacher exception: "+ex);
+            return false;
+        }
+    }
+    
+    public ResultSet getAllTeachers() {
+        
+        try {
+            conn = conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            query = conn.createStatement(); 
+            sql = "SELECT * FROM teachers";
+            
+            rs = query.executeQuery(sql);
+            return rs;
+        } catch (SQLException ex) {
+            System.out.println("Unable to get all teachers.");
+            return null;
         }
         
     }
