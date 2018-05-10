@@ -84,6 +84,22 @@ public class Teacher extends Person {
         
     }
     
+    public void setDesignation (String department, String designation){
+        this.department = department;
+        switch (designation) {
+            case "Lecturer":
+                this.designation = "L";
+                break;
+            case "Head of Faculty":
+                this.designation = "HOF";
+                break;
+            case "Coordinator":
+                this.designation = "CO";
+                break;
+        }
+        
+    }
+    
      public boolean delTeacher(){
          
         try {
@@ -115,6 +131,8 @@ public class Teacher extends Person {
                 super.gender = rs.getString("gender");
                 super.phoneNumber = rs.getString("phonenumber"); 
                 super.address = rs.getString("address");
+                this.department = rs.getString("department");
+                this.designation = rs.getString("designation");
                 
             } else {
                 query.close();
@@ -159,6 +177,41 @@ public class Teacher extends Person {
             System.out.println("Update Teacher exception: "+ex);
             return false;
         }
+    }
+    
+     public boolean updateWithDesignation (){       
+        try {
+            Class.forName(DRIVER);
+            conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+                                   
+            sql = "UPDATE teachers SET "                    
+                    + "firstname = ?,"
+                    + "lastname = ?,"
+                    + "gender = ?,"
+                    + "phonenumber = ?,"
+                    + "address = ?,"
+                    + "department = ?,"
+                    + "designation = ?"
+                    + "WHERE id = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, super.firstName);
+            ps.setString(2, super.lastName);
+            ps.setString(3, super.gender);
+            ps.setString(4, super.phoneNumber);
+            ps.setString(5, super.address);
+            ps.setString(6, department);
+            ps.setString(7, designation);
+            ps.setInt(8, super.id);
+
+            // execute update SQL stetement
+            ps.executeUpdate();
+            ps.clearParameters();
+            return true;
+        } catch (Exception ex) {
+            System.out.println("Update Teacher exception: "+ex);
+            return false;
+        }   
+        
     }
     
     public ResultSet getAllTeachers() {

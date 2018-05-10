@@ -23,7 +23,7 @@ public class AbcGui extends javax.swing.JFrame {
     int choice = 0;
     int total = 0;
     int tuition = 0;
-    
+    int hours = 0;    
     
     public AbcGui() {
         initComponents();
@@ -67,6 +67,13 @@ public class AbcGui extends javax.swing.JFrame {
         genderCB1 = new javax.swing.JComboBox<>();
         addHeaderLabel = new javax.swing.JLabel();
         updatePanel = new javax.swing.JPanel();
+        teacherDetailsFrame1 = new javax.swing.JInternalFrame();
+        teacherDetailsName1 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        deptCB1 = new javax.swing.JComboBox<>();
+        desigCB1 = new javax.swing.JComboBox<>();
+        jLabel35 = new javax.swing.JLabel();
+        teacherDetailsBtn1 = new javax.swing.JButton();
         updateSearch = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -116,6 +123,41 @@ public class AbcGui extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel19 = new javax.swing.JLabel();
         depositTF = new javax.swing.JTextField();
+        salaryPanel = new javax.swing.JPanel();
+        salarySearch = new javax.swing.JLabel();
+        salaryID = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        salaryHeader = new javax.swing.JLabel();
+        salaryPanel2 = new javax.swing.JPanel();
+        nameSalaryLbl = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        designationLbl = new javax.swing.JLabel();
+        hrsLbl = new javax.swing.JLabel();
+        travellingLbl = new javax.swing.JLabel();
+        hoursSpinner = new javax.swing.JSpinner();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        medicalSpinner = new javax.swing.JSpinner();
+        housingSpinner = new javax.swing.JSpinner();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        travellingSpinner = new javax.swing.JSpinner();
+        netSalaryLbl = new javax.swing.JLabel();
+        medicalLbl = new javax.swing.JLabel();
+        housingLbl = new javax.swing.JLabel();
+        totalSalaryLbl = new javax.swing.JLabel();
+        overtimePayLbl = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
         loginPanel = new javax.swing.JPanel();
         userLabel = new javax.swing.JLabel();
         abcLogoLogin = new javax.swing.JLabel();
@@ -256,6 +298,43 @@ public class AbcGui extends javax.swing.JFrame {
 
         updatePanel.setBackground(new java.awt.Color(255, 255, 255));
         updatePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        teacherDetailsFrame1.setTitle("Teacher Details");
+        teacherDetailsFrame1.setToolTipText("");
+        teacherDetailsFrame1.setFrameIcon(null);
+        teacherDetailsFrame1.setInheritsPopupMenu(true);
+        try {
+            teacherDetailsFrame1.setSelected(true);
+        } catch (java.beans.PropertyVetoException e1) {
+            e1.printStackTrace();
+        }
+        teacherDetailsFrame1.setVisible(false);
+        teacherDetailsFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        teacherDetailsName1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        teacherDetailsFrame1.getContentPane().add(teacherDetailsName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
+
+        jLabel22.setText("Department");
+        teacherDetailsFrame1.getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
+
+        deptCB1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Business", "Computing" }));
+        teacherDetailsFrame1.getContentPane().add(deptCB1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 170, -1));
+
+        desigCB1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lecturer", "Coordinator", "Head of Faculty" }));
+        teacherDetailsFrame1.getContentPane().add(desigCB1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 170, -1));
+
+        jLabel35.setText("Designation");
+        teacherDetailsFrame1.getContentPane().add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
+
+        teacherDetailsBtn1.setText("Update");
+        teacherDetailsBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teacherDetailsBtn1ActionPerformed(evt);
+            }
+        });
+        teacherDetailsFrame1.getContentPane().add(teacherDetailsBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 90, 30));
+
+        updatePanel.add(teacherDetailsFrame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 300, 300));
 
         updateSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search2.png"))); // NOI18N
         updateSearch.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -539,6 +618,153 @@ public class AbcGui extends javax.swing.JFrame {
 
         mainPanel.add(enlistPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
+        salaryPanel.setBackground(new java.awt.Color(255, 255, 255));
+        salaryPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        salarySearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search2.png"))); // NOI18N
+        salarySearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salarySearchMouseClicked(evt);
+            }
+        });
+        salaryPanel.add(salarySearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 40, 40));
+
+        salaryID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        salaryID.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        salaryID.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salaryIDMouseClicked(evt);
+            }
+        });
+        salaryID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salaryIDActionPerformed(evt);
+            }
+        });
+        salaryPanel.add(salaryID, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 200, 40));
+
+        jLabel20.setText("Enter ID:");
+        salaryPanel.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 60, 20));
+
+        salaryHeader.setText("Calculate Teacher Salary");
+        salaryPanel.add(salaryHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
+
+        salaryPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        salaryPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        salaryPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        nameSalaryLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        salaryPanel2.add(nameSalaryLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel23.setText("Net Salary");
+        salaryPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, -1, 20));
+        salaryPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 500, 10));
+
+        jLabel25.setText("Required Teaching Hours:");
+        salaryPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+
+        jLabel26.setText("Designation:");
+        salaryPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+
+        designationLbl.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        salaryPanel2.add(designationLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 40, 30, -1));
+
+        hrsLbl.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        salaryPanel2.add(hrsLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, -1, -1));
+
+        travellingLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        travellingLbl.setForeground(new java.awt.Color(102, 0, 0));
+        salaryPanel2.add(travellingLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, -1));
+
+        hoursSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 50, 1));
+        hoursSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                hoursSpinnerStateChanged(evt);
+            }
+        });
+        salaryPanel2.add(hoursSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 40, 20));
+
+        jLabel24.setText("Total Salary:");
+        salaryPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, 20));
+
+        jLabel27.setText("Base Salary: 1200");
+        salaryPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, 20));
+
+        jLabel28.setText("Housing Allowance:");
+        salaryPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, 20));
+
+        jLabel29.setText("Medical Allowance:");
+        salaryPanel2.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, 20));
+
+        jLabel30.setText("Travelling Allowance:");
+        salaryPanel2.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, 20));
+        salaryPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 82, 500, -1));
+        salaryPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 188, 500, -1));
+
+        medicalSpinner.setModel(new javax.swing.SpinnerNumberModel(3, 0, 15, 1));
+        medicalSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                medicalSpinnerStateChanged(evt);
+            }
+        });
+        salaryPanel2.add(medicalSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 40, 20));
+
+        housingSpinner.setModel(new javax.swing.SpinnerNumberModel(10, 0, 15, 1));
+        housingSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                housingSpinnerStateChanged(evt);
+            }
+        });
+        salaryPanel2.add(housingSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 40, 20));
+
+        jLabel21.setText("% of Total Salary = ");
+        salaryPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, 20));
+
+        jLabel31.setText("% of Total Salary = ");
+        salaryPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, -1, 20));
+
+        jLabel32.setText("% of Total Salary = ");
+        salaryPanel2.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, -1, 20));
+
+        travellingSpinner.setModel(new javax.swing.SpinnerNumberModel(5, 0, 15, 1));
+        travellingSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                travellingSpinnerStateChanged(evt);
+            }
+        });
+        salaryPanel2.add(travellingSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 40, 20));
+
+        netSalaryLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        netSalaryLbl.setForeground(new java.awt.Color(102, 0, 0));
+        salaryPanel2.add(netSalaryLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, -1, 20));
+
+        medicalLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        medicalLbl.setForeground(new java.awt.Color(102, 0, 0));
+        salaryPanel2.add(medicalLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, -1, -1));
+
+        housingLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        housingLbl.setForeground(new java.awt.Color(102, 0, 0));
+        salaryPanel2.add(housingLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, -1, -1));
+
+        totalSalaryLbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        totalSalaryLbl.setForeground(new java.awt.Color(102, 0, 0));
+        salaryPanel2.add(totalSalaryLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, 20));
+
+        overtimePayLbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        overtimePayLbl.setForeground(new java.awt.Color(102, 0, 0));
+        salaryPanel2.add(overtimePayLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, -1, -1));
+
+        jLabel33.setText("Teaching Hours");
+        salaryPanel2.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 114, -1, 20));
+
+        jLabel34.setText("Overtime Pay:");
+        salaryPanel2.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+
+        salaryPanel.add(salaryPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 500, 330));
+
+        mainPanel.add(salaryPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+
         getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         loginPanel.setFocusable(false);
@@ -679,6 +905,11 @@ public class AbcGui extends javax.swing.JFrame {
         teacherMenu.add(deleteTeacher);
 
         salaryTeacher.setText("Calculate salary");
+        salaryTeacher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salaryTeacherActionPerformed(evt);
+            }
+        });
         teacherMenu.add(salaryTeacher);
 
         viewTeacher.setText("View");
@@ -936,18 +1167,28 @@ public class AbcGui extends javax.swing.JFrame {
             }
         }
         else {
-            Teacher teacher = new Teacher(Integer.valueOf(updateID.getText()),
-                    fnameTF.getText(),
-                    lnameTF.getText(),
-                    genderCB.getSelectedItem().toString(),
-                    phoneTF.getText(),
-                    addressTF.getText());
-            if (teacher.updateTeacher()) {
-                JOptionPane.showMessageDialog(this, "Update successful.");
-                initUpdateFields();
-            } else {
-                JOptionPane.showMessageDialog(this, "Update failed.");
-                initUpdateFields();
+            int choice = JOptionPane.showConfirmDialog(
+                        this,
+                        "Update teacher designation and department?",
+                        "",
+                        JOptionPane.YES_NO_OPTION);
+            if (choice == JOptionPane.YES_OPTION){
+                teacherDetailsFrame1.setVisible(true);
+            }
+            else {
+                Teacher teacher = new Teacher(Integer.valueOf(updateID.getText()),
+                        fnameTF.getText(),
+                        lnameTF.getText(),
+                        genderCB.getSelectedItem().toString(),
+                        phoneTF.getText(),
+                        addressTF.getText());
+                if (teacher.updateTeacher()) {
+                    JOptionPane.showMessageDialog(this, "Update successful.");
+                    initUpdateFields();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Update failed.");
+                    initUpdateFields();
+                }
             }
         }
     }//GEN-LAST:event_updateBtnActionPerformed
@@ -999,7 +1240,7 @@ public class AbcGui extends javax.swing.JFrame {
             depositTF.setEnabled(false);
             enrollBtn.setEnabled(false);
         } else {
-            JOptionPane.showMessageDialog(this, "Student id does not exist.");  
+            JOptionPane.showMessageDialog(this, "Student ID does not exist.");  
         }        
     }//GEN-LAST:event_enlistSearchMouseClicked
 
@@ -1092,10 +1333,131 @@ public class AbcGui extends javax.swing.JFrame {
         Student student = new Student();
         studentTable.setModel(DbUtils.resultSetToTableModel(student.getAllStudents()));  
     }//GEN-LAST:event_allRBActionPerformed
+
+    private void salarySearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salarySearchMouseClicked
+        Teacher teacher = new Teacher();              
+        
+        if (teacher.searchTeacher(Integer.valueOf(salaryID.getText()))){
+            salaryPanel2.setVisible(true);
+            nameSalaryLbl.setText(teacher.lastName.toUpperCase() + ", " + teacher.firstName);
+            designationLbl.setText(teacher.designation);
+            
+            if (teacher.designation.equalsIgnoreCase("HOF")) hours = 8;
+            else if (teacher.designation.equalsIgnoreCase("CO")) hours = 13;
+            else if (teacher.designation.equalsIgnoreCase("L")) hours = 18;
+            
+            hrsLbl.setText(String.valueOf(hours));
+            hoursSpinner.setValue(hours);
+            
+            calculateSalary((Integer)hoursSpinner.getValue());
+            
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Teacher ID does not exist.");
+            salaryID.setText("");
+        }
+    }//GEN-LAST:event_salarySearchMouseClicked
+
+    private void salaryIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salaryIDMouseClicked
+        initSalaryFields();
+    }//GEN-LAST:event_salaryIDMouseClicked
+
+    private void salaryIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaryIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_salaryIDActionPerformed
+
+    private void salaryTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaryTeacherActionPerformed
+        setAllInvisible();
+        salaryPanel.setVisible(true);
+    }//GEN-LAST:event_salaryTeacherActionPerformed
+
+    private void hoursSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_hoursSpinnerStateChanged
+        if ((Integer)hoursSpinner.getValue() < hours) {
+            hoursSpinner.setValue(hours);
+            JOptionPane.showMessageDialog(this, "Value cannot be below required teaching hours.");
+        }
+        calculateSalary((Integer)hoursSpinner.getValue());
+            
+    }//GEN-LAST:event_hoursSpinnerStateChanged
+
+    private void housingSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_housingSpinnerStateChanged
+        calculateSalary((Integer)hoursSpinner.getValue());
+    }//GEN-LAST:event_housingSpinnerStateChanged
+
+    private void medicalSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_medicalSpinnerStateChanged
+        calculateSalary((Integer)hoursSpinner.getValue());
+    }//GEN-LAST:event_medicalSpinnerStateChanged
+
+    private void travellingSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_travellingSpinnerStateChanged
+        calculateSalary((Integer)hoursSpinner.getValue());
+    }//GEN-LAST:event_travellingSpinnerStateChanged
+
+    private void teacherDetailsBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherDetailsBtn1ActionPerformed
+        Teacher teacher = new Teacher(Integer.valueOf(updateID.getText()),
+                        fnameTF.getText(),
+                        lnameTF.getText(),
+                        genderCB.getSelectedItem().toString(),
+                        phoneTF.getText(),
+                        addressTF.getText());
+        teacher.setDesignation(deptCB1.getSelectedItem().toString(), desigCB1.getSelectedItem().toString());
+        
+        if (teacher.updateWithDesignation()) {
+                JOptionPane.showMessageDialog(this, "Update successful.");
+                initUpdateFields();
+        } else {
+            JOptionPane.showMessageDialog(this, "Update failed.");
+            initUpdateFields();
+        }
+        teacherDetailsFrame1.dispose();
+    }//GEN-LAST:event_teacherDetailsBtn1ActionPerformed
     
     private void updateTuition(){
         tuition = (Integer)repModuleSpinner.getValue() * 110 + (Integer)newModuleSpinner.getValue() * 525;
         tuitionLbl.setText(String.valueOf(tuition));
+    }
+    
+    private void calculateSalary(int workingHours){
+        int overtimePay = (workingHours - hours)*325;
+        overtimePayLbl.setText(String.valueOf(overtimePay));
+        
+        int totalSalary = 1200 + overtimePay;
+        totalSalaryLbl.setText(String.valueOf(totalSalary));
+        
+        int housing = (Integer)housingSpinner.getValue();
+        housing = housing*totalSalary/100;
+        housingLbl.setText(String.valueOf(housing));
+        
+        int medical = (Integer)medicalSpinner.getValue();
+        medical = medical*totalSalary/100;
+        medicalLbl.setText(String.valueOf(medical));
+        
+        int travelling = (Integer)travellingSpinner.getValue();
+        travelling = travelling*totalSalary/100;
+        travellingLbl.setText(String.valueOf(travelling));
+        
+        int netSalary = totalSalary + housing + medical + travelling;
+        netSalaryLbl.setText(String.valueOf(netSalary));
+    }
+    
+    private void initSalaryFields(){
+        salaryPanel2.setVisible(false);
+        hours = 0; 
+        salaryID.setText("");
+        nameSalaryLbl.setText("");
+        designationLbl.setText("");
+        hrsLbl.setText("");
+        hoursSpinner.setValue(0);
+        overtimePayLbl.setText("");
+        totalSalaryLbl.setText("");
+        housingSpinner.setValue(10);
+        medicalSpinner.setValue(3);
+        travellingSpinner.setValue(5);
+        netSalaryLbl.setText("");
+        housingLbl.setText("");
+        medicalLbl.setText("");
+        travellingLbl.setText("");
+             
+
     }
     
     private void setAllInvisible() {
@@ -1107,6 +1469,8 @@ public class AbcGui extends javax.swing.JFrame {
         viewTeacherPanel.setVisible(false);
         enlistPanel.setVisible(false);
         enlistPanel2.setVisible(false);
+        salaryPanel.setVisible(false);
+        salaryPanel2.setVisible(false);
     }
     
     private void enableFields(Boolean b){
@@ -1133,10 +1497,14 @@ public class AbcGui extends javax.swing.JFrame {
         updateID.setText("");
         updateID.setEnabled(true);
         fnameTF.setText("");
+        fnameTF.setEnabled(false);
         lnameTF.setText("");
+        lnameTF.setEnabled(false);
         phoneTF.setText("");
+        phoneTF.setEnabled(false);
         genderCB.setSelectedIndex(0);
         addressTF.setText("");
+        addressTF.setEnabled(false);
         
     }
     
@@ -1205,7 +1573,10 @@ public class AbcGui extends javax.swing.JFrame {
     private javax.swing.JMenuItem deleteTeacher;
     private javax.swing.JTextField depositTF;
     private javax.swing.JComboBox<String> deptCB;
+    private javax.swing.JComboBox<String> deptCB1;
     private javax.swing.JComboBox<String> desigCB;
+    private javax.swing.JComboBox<String> desigCB1;
+    private javax.swing.JLabel designationLbl;
     private javax.swing.JTextField enlistID;
     private javax.swing.JPanel enlistPanel;
     private javax.swing.JPanel enlistPanel2;
@@ -1219,6 +1590,10 @@ public class AbcGui extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenu homeMenu;
     private javax.swing.JPanel homePanel;
+    private javax.swing.JSpinner hoursSpinner;
+    private javax.swing.JLabel housingLbl;
+    private javax.swing.JSpinner housingSpinner;
+    private javax.swing.JLabel hrsLbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1231,7 +1606,23 @@ public class AbcGui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1241,34 +1632,53 @@ public class AbcGui extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextField lnameTF;
     private javax.swing.JTextField lnameTF1;
     private javax.swing.JButton loginBtn;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JLabel logoHome;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JLabel medicalLbl;
+    private javax.swing.JSpinner medicalSpinner;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JLabel nameEnlistLabel;
+    private javax.swing.JLabel nameSalaryLbl;
+    private javax.swing.JLabel netSalaryLbl;
     private javax.swing.JButton newBtn;
     private javax.swing.JSpinner newModuleSpinner;
     private javax.swing.JPanel newPanel;
     private javax.swing.JMenuItem newStudent;
     private javax.swing.JMenuItem newTeacher;
+    private javax.swing.JLabel overtimePayLbl;
     private javax.swing.JTextField phoneTF;
     private javax.swing.JTextField phoneTF1;
     private javax.swing.JLabel pwLabel;
     private javax.swing.JPasswordField pwTF;
     private javax.swing.JSpinner repModuleSpinner;
+    private javax.swing.JLabel salaryHeader;
+    private javax.swing.JTextField salaryID;
+    private javax.swing.JPanel salaryPanel;
+    private javax.swing.JPanel salaryPanel2;
+    private javax.swing.JLabel salarySearch;
     private javax.swing.JMenuItem salaryTeacher;
     private javax.swing.JMenuItem showBalance;
     private javax.swing.JMenu studentMenu;
     private javax.swing.JTable studentTable;
     private javax.swing.ButtonGroup studentViewBG;
     private javax.swing.JButton teacherDetailsBtn;
+    private javax.swing.JButton teacherDetailsBtn1;
     private javax.swing.JInternalFrame teacherDetailsFrame;
+    private javax.swing.JInternalFrame teacherDetailsFrame1;
     private javax.swing.JLabel teacherDetailsName;
+    private javax.swing.JLabel teacherDetailsName1;
     private javax.swing.JMenu teacherMenu;
     private javax.swing.JTable teacherTable;
+    private javax.swing.JLabel totalSalaryLbl;
+    private javax.swing.JLabel travellingLbl;
+    private javax.swing.JSpinner travellingSpinner;
     private javax.swing.JLabel tuitionLbl;
     private javax.swing.JButton updateBtn;
     private javax.swing.JButton updateCancelBtn;
