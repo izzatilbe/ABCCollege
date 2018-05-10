@@ -719,7 +719,8 @@ public class AbcGui extends javax.swing.JFrame {
 
     private void updateStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStudentActionPerformed
         setAllInvisible();
-        updateHeaderLabel.setText("Update Student");
+        initUpdateFields();
+        updateHeaderLabel.setText("Update Student");        
         updatePanel.setVisible(true);
         choice = STUDENT;
     }//GEN-LAST:event_updateStudentActionPerformed
@@ -764,6 +765,7 @@ public class AbcGui extends javax.swing.JFrame {
 
     private void updateTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTeacherActionPerformed
         setAllInvisible();
+        initUpdateFields();
         updateHeaderLabel.setText("Update Teacher");
         updatePanel.setVisible(true);
         choice = TEACHER;
@@ -927,8 +929,10 @@ public class AbcGui extends javax.swing.JFrame {
                     addressTF.getText());
             if (student.updateStudent()) {
                 JOptionPane.showMessageDialog(this, "Update successful.");
+                initUpdateFields();
             } else {
                 JOptionPane.showMessageDialog(this, "Update failed.");
+                initUpdateFields();
             }
         }
         else {
@@ -940,8 +944,10 @@ public class AbcGui extends javax.swing.JFrame {
                     addressTF.getText());
             if (teacher.updateTeacher()) {
                 JOptionPane.showMessageDialog(this, "Update successful.");
+                initUpdateFields();
             } else {
                 JOptionPane.showMessageDialog(this, "Update failed.");
+                initUpdateFields();
             }
         }
     }//GEN-LAST:event_updateBtnActionPerformed
@@ -1125,11 +1131,13 @@ public class AbcGui extends javax.swing.JFrame {
     
     private void initUpdateFields(){
         updateID.setText("");
+        updateID.setEnabled(true);
         fnameTF.setText("");
         lnameTF.setText("");
         phoneTF.setText("");
         genderCB.setSelectedIndex(0);
         addressTF.setText("");
+        
     }
     
     private void initEnlistFields(){
